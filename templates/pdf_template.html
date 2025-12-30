@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automated PDF Report</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        h1 { color: #2E86C1; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #2E86C1; color: white; }
+        img { width: 600px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Automated Report - {{sheet_name}}</h1>
+    <p>Date: {{date}}</p>
+    <h2>Key Metrics / KPIs</h2>
+    {{kpis_table | safe}}
+    <h2>Charts</h2>
+    {% for chart in chart_files %}
+        <img src="{{chart}}" />
+    {% endfor %}
+</body>
+</html>
