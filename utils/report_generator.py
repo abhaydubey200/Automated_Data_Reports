@@ -1,12 +1,13 @@
-def generate_sweetviz(df, sheet_name, report_dir):
-    import sweetviz as sv
-    import os
-    from datetime import datetime
+import os
+from datetime import datetime
 
-    os.makedirs(report_dir, exist_ok=True)
+def generate_sweetviz(df, sheet_name, output_dir):
+    import sweetviz as sv   # Lazy import (IMPORTANT)
+
+    os.makedirs(output_dir, exist_ok=True)
 
     file_path = os.path.join(
-        report_dir,
+        output_dir,
         f"sweetviz_{sheet_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
     )
 
