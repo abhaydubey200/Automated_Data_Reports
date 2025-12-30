@@ -1,11 +1,12 @@
 streamlit
 pandas
 numpy
+plotly
 matplotlib
 seaborn
-plotly
 sweetviz
 openpyxl
 xlsxwriter
 fpdf
 jinja2
+setuptools
