@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 
 from utils.data_loader import load_file
 from utils.kpi_generator import generate_kpis
