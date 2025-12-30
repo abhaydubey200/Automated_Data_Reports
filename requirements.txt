@@ -1,0 +1,11 @@
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+sweetviz
+openpyxl
+xlsxwriter
+fpdf
+jinja2
