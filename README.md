@@ -1,21 +1,17 @@
-# Advanced Automated Data Reports
-
-This project allows you to upload CSV or Excel datasets and automatically generates:
-- Sweetviz interactive EDA report
-- KPIs summary tables
-- Automatic charts for numeric and categorical columns
-- PDF reports combining KPIs and charts
+# Automated Data Reporting System
 
 ## Features
-- Multi-sheet Excel support
-- Automatic detection of numeric and categorical columns
-- Downloadable Sweetviz HTML report
-- Downloadable PDF report
-- Streamlit dashboard for interactive visualization
+- Upload CSV / Excel
+- Multi-sheet support
+- Automatic KPIs
+- Sweetviz EDA report
+- Streamlit Cloud ready
 
-## Installation
-```bash
-git clone <repo-url>
-cd Automated_Data_Reports
+## Deployment
+- Python 3.11
+- NumPy < 2.0
+- Streamlit Cloud supported
+
+## Run locally
 pip install -r requirements.txt
 streamlit run app.py
