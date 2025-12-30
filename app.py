@@ -2,41 +2,38 @@ import streamlit as st
 from utils import report_generator as rg
 import os
 
-st.set_page_config(page_title="Advanced Automated Data Reports", layout="wide")
-st.title(" Advanced Automated Data Analytics Dashboard")
+st.set_page_config(page_title="Automated Data Reports", layout="wide")
+st.title("📊 Automated Data Analysis Platform")
 
-uploaded_file = st.file_uploader("Upload CSV or Excel", type=["csv", "xlsx"])
+uploaded_file = st.file_uploader(
+    "Upload CSV or Excel file",
+    type=["csv", "xlsx"]
+)
 
 if uploaded_file:
-    st.success(" File uploaded successfully!")
-    
-    # Load data
-    df_dict = rg.load_data(uploaded_file)
-    report_dir = os.path.join(os.getcwd(), "Reports")
-    os.makedirs(report_dir, exist_ok=True)
+    st.success("File uploaded successfully")
 
-    for sheet_name, df in df_dict.items():
-        st.write(f"## Sheet: {sheet_name}")
+    data = rg.load_data(uploaded_file)
+    report_dir = os.path.join(os.getcwd(), "Reports")
+
+    for sheet_name, df in data.items():
+        st.header(f"Sheet: {sheet_name}")
         st.dataframe(df.head())
 
-        # Sweetviz
-        st.write("### Sweetviz Report")
-        sv_file = rg.generate_sweetviz(df, sheet_name=sheet_name, report_dir=report_dir)
-        st.markdown(f"[Open Sweetviz Report]({sv_file})")
-
         # KPIs
-        st.write("### Key Metrics / KPIs")
+        st.subheader("Key KPIs")
         kpis = rg.generate_kpis(df)
         st.dataframe(kpis)
 
-        # Charts
-        st.write("### Automatic Charts")
-        charts = rg.generate_charts(df, report_dir=report_dir)
-        st.write(f"Generated {len(charts)} charts")
+        # Sweetviz
+        st.subheader("Sweetviz Report")
+        with st.spinner("Generating Sweetviz report..."):
+            sv_path = rg.generate_sweetviz(df, sheet_name, report_dir)
+        st.markdown(f"[Open Sweetviz Report]({sv_path})")
 
         # PDF
-        st.write("### PDF Report")
-        pdf_file = rg.generate_pdf(df, kpis, charts, sheet_name=sheet_name, report_dir=report_dir)
-        st.markdown(f"[Download PDF Report]({pdf_file})")
+        st.subheader("PDF Report")
+        pdf_path = rg.generate_pdf(kpis, sheet_name, report_dir)
+        st.markdown(f"[Download PDF]({pdf_path})")
 
-    st.success(" All reports generated successfully!")
+    st.success("All reports generated successfully")
